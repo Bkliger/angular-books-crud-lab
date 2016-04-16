@@ -1,6 +1,68 @@
 <h2>Library Books</h2>
-<!-- <div ng-repeat="add the expression here to repeat through the books">
-  Here, make the HTML for how you want each book to display.
-  Make sure you display an image, the title, and the author.
-  The title should be a link to the specific book view.
-</div> -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+            <form class="form-horizontal" ng-submit="booksIndexCtrl.createAlbum()">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Add New Book</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Book Title</label>
+                        <div class="col-md-4">
+                            <input id="name" ng-model="booksIndexCtrl.newBook.title" type="text" class="form-control input-md" required="">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Author</label>
+                        <div class="col-md-4">
+                            <input ng-model="booksIndexCtrl.newBook.author" type="text" class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Release Date</label>
+                        <div class="col-md-4">
+                            <input ng-model="booksIndexCtrl.newBook.releaseDate" type="text" class="form-control input-md">
+                        </div>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <input ng-model="booksIndexCtrl.newBook.image" type="text" class="form-control input-md">
+                        </div>
+                    </div>
+
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Save Book</label>
+                        <div class="col-md-4">
+                            <button class='btn btn-success' ng-click="booksIndexCtrl.createBook(book)">Save</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div ng-repeat="book in booksIndexCtrl.books">
+    <img ng-src="{{book.image}}">
+    <a ng-href={{book._id}}>{{book.title}}</a> {{book.author}} {{book.releaseDate}}
+    <div class='panel-footer'>
+        <div class='panel-footer'>
+            <button class='btn btn-danger' ng-click="booksIndexCtrl.deleteBook(book)">Delete Book</button>
+            <button class='btn btn-info' ng-hide="editing" ng-click="editing = true">Edit Album</button>
+            <button class='btn btn-success' ng-show="editing" ng-click="booksIndexCtrl.editbook(book); editing = false">Save Changes</button>
+        </div>
+    </div>
+</div>
