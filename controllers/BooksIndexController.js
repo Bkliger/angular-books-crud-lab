@@ -43,10 +43,20 @@ function BooksIndexController ($http, $routeParams, $location) {
   }).then(function successCallback(response) {
     // $location.path("/");
     var index = vm.books.indexOf(book);
-    vm.books.splice(index,1)
+    vm.books.splice(index,1);
+  }, function errorCallback(response) {
+    console.log('There was an error deleting the data', response);
+  });
+  };
+vm.editBook = function (book) {
+  $http({
+    method: 'PUT',
+    url: endpoint + "/" + book._id,
+    data: book
+  }).then(function successCallback(response) {
 
   }, function errorCallback(response) {
     console.log('There was an error deleting the data', response);
   });
-};
+  };
 }
